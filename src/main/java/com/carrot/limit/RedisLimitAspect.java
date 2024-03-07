@@ -5,6 +5,7 @@ import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
@@ -20,7 +21,7 @@ import java.util.Collections;
 @Component
 public class RedisLimitAspect {
 
-    @Resource
+    @Autowired
     private RedisTemplate<String, Serializable> redisTemplate;
 
     private static final String LUA_PATH = "redis_limit.lua";
