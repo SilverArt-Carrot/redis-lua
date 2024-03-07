@@ -10,7 +10,7 @@ local current = tonumber(redis.call('get', key) or "0")
 if current + 1 > limit then
     return 0  -- 超出当前流量[限流]
 else
-    count = redis.call("INCR", key, 1)  -- 没有超出则加1
+    count = redis.call("INCRBY", key, 1)  -- 没有超出则加1
     if tonumber(count) == 1 then   -- 第一次设置的时候设置过期时间
         redis.call('expire', KEYS[1], ARGV[2])
     end
